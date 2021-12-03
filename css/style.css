@@ -1,0 +1,160 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+label {
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: 1800px;
+  padding: 0 15px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.header-panel {
+  background-color: #dff0e1;
+}
+
+.admin-panel__header {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+}
+
+.panel__header {
+  display: flex;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.panel__title {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+  color: #333;
+}
+
+.panel__new-student,
+.panel__filters {
+  max-width: 500px;
+  padding: 10px 20px 10px 40px;
+  margin: 30px 20px;
+  border: 1px solid #333;
+  box-shadow: 0 0 5px 2px #333;
+  border-radius: 10px;
+}
+
+.panel__item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.panel__item-span {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.panel__item-input {
+  padding-left: 20px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  height: 30px;
+  font-size: 16px;
+  color: #333;
+}
+
+.panel__btn {
+  padding: 0 20px;
+  padding-top: 10px;
+  padding-bottom: 9px;
+  margin: 10px auto;
+
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+
+  border: 1px solid #333;
+  border-radius: 50px;
+  background-color: transparent;
+
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.panel__btn:hover {
+  color: #fff;
+  background-color: #333;
+}
+
+
+
+.students-list {
+  background-color: #dff0e1;
+}
+
+.students-list__table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+}
+
+.table-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+}
+
+.table {
+  text-align: left;
+  border-collapse: collapse;
+  border-spacing: 5px;
+  box-shadow: 0 0 5px 1px #333;
+
+}
+
+
+
+.th {
+  font-size: 18px;
+  border: 2px solid #333;
+  padding: 10px;
+}
+
+.td, .tr {
+  border: 2px solid #333;
+  padding: 10px;
+
+}
