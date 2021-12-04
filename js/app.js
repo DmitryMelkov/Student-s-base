@@ -106,50 +106,19 @@ window.addEventListener("DOMContentLoaded", function () {
   render();
 
 
-  let firstName = "firstName";
-  let fio = "fio";
-  let yearEntry = "yearEntry";
-  let birthday = 'birthday';
+  function sortStudents(studentsArr, column, dir = true) {
+    let result = studentsArr.sort(function (a, b) {
+      let direction = a[column] < b[column];
+      if (dir == true) {
+        direction = a[column] > b[column];
+      }
+
+      if (direction == true) return -1;
+    });
+
+    return result;
+  }
 
   //по году поступления
-  function sortStudentsYearEntry(a, b) {
-    if (a[yearEntry] > b[yearEntry]) return 1;
-    if (a[yearEntry] < b[yearEntry]) return -1;
-    if ((a[yearEntry] = b[yearEntry])) return 0;
-  }
-
-  //по году рождения
-  function sortStudentsBirthday(a, b) {
-    if (a[birthday] > b[birthday]) return 1;
-    if (a[birthday] < b[birthday]) return -1;
-    if ((a[birthday] = b[birthday])) return 0;
-  }
-
-  //по имени
-  function sortStudentsFirstName(a, b) {
-    if (a[firstName] > b[firstName]) return 1;
-    if (a[firstName] < b[firstName]) return -1;
-    if ((a[firstName] = b[firstName])) return 0;
-  }
-
-  //по ФИО
-  function sortStudentsfio(a, b) {
-    if (a[fio] > b[fio]) return 1;
-    if (a[fio] < b[fio]) return -1;
-    if ((a[fio] = b[fio])) return 0;
-  }
-
-  console.log("По году поступления", studentsArr.sort(sortStudentsYearEntry));
-  console.log("По году рождения", studentsArr.sort(sortStudentsBirthday));
-  console.log("По имени", studentsArr.sort(sortStudentsFirstName));
-  console.log("По ФИО", studentsArr.sort(sortStudentsfio));
-
-
-  function sortStudents(arr, column, dir) {
-    studentsArr.sort(sortStudentsYearEntry)
-
-
-  }
-
-  console.log(sortStudents(studentsArr, "yearEntry"));
+  console.log(sortStudents(studentsArr, "firstName"));
 });
