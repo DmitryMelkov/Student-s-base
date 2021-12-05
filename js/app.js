@@ -1,12 +1,4 @@
 window.addEventListener("DOMContentLoaded", function () {
-  let input = document.querySelectorAll(".panel__item-input");
-  let buttonClear = document.getElementById("clearBtn");
-
-  //очистка полей
-  buttonClear.addEventListener("click", () => {
-    input.forEach((input) => (input.value = ""));
-  });
-
   //массив студента
   let studentsArr = [
     {
@@ -26,7 +18,7 @@ window.addEventListener("DOMContentLoaded", function () {
       fio: "Alexandr Dmitrievich Gorbunov",
       birthday: new Date("1992-05-19"),
       yearEntry: 2010,
-      faculty: "Chemical-technological",
+      faculty: "electrical-engineering",
       numberPhone: "+7-999-469-82-97",
     },
     {
@@ -36,7 +28,7 @@ window.addEventListener("DOMContentLoaded", function () {
       fio: "Ivan Ivanovich Ivanov",
       birthday: new Date("1997-09-10"),
       yearEntry: 2015,
-      faculty: "Chemical-technological",
+      faculty: "electrical-engineering",
       numberPhone: "+7-999-456-32-87",
     },
     {
@@ -91,8 +83,13 @@ window.addEventListener("DOMContentLoaded", function () {
 
   let tbody = document.getElementById("listStudents");
 
+  let columnSort = "fio";
+  let dirSort = false;
+
   function render() {
     let copyStudentsArr = [...studentsArr];
+
+    copyStudentsArr = sortStudents(copyStudentsArr, columnSort, dirSort);
 
     tbody.innerHTML = "";
 
@@ -105,6 +102,30 @@ window.addEventListener("DOMContentLoaded", function () {
 
   render();
 
+  //сортировка
+  document.querySelector("#fioSort").addEventListener("click", function () {
+    columnSort = "fio";
+    dirSort = !dirSort;
+    render();
+  });
+
+  document.querySelector("#facultySort").addEventListener("click", function () {
+    columnSort = "faculty";
+    dirSort = !dirSort;
+    render();
+  });
+
+  document.querySelector("#birthdaySort").addEventListener("click", function () {
+    columnSort = "birthday";
+    dirSort = !dirSort;
+    render();
+  });
+
+  document.querySelector("#yearEntrySort").addEventListener("click", function () {
+    columnSort = "yearEntry";
+    dirSort = !dirSort;
+    render();
+  });
 
   function sortStudents(studentsArr, column, dir = true) {
     let result = studentsArr.sort(function (a, b) {
@@ -119,6 +140,93 @@ window.addEventListener("DOMContentLoaded", function () {
     return result;
   }
 
-  //по году поступления
-  console.log(sortStudents(studentsArr, "firstName"));
+  //установка ильтров
+  let applyBtnFilter = document.querySelector("#applyBtn");
+
+  //получаем инпуты 1ый вариант
+  let fioFilterInput = document.querySelector("#fioFilter");
+  let birthdayFilterInput = document.querySelector("#birthdayFilter");
+  let facultyFilterInput = document.querySelector("#facultyFilter");
+  let yearEntryFilter = document.querySelector("#yearEntryFilter");
+
+  let inputValue;
+
+  applyBtnFilter.addEventListener("click", function (e) {
+    e.preventDefault();
+    inputValue = yearEntryFilter.value;
+
+    filterStudents();
+  });
+
+  function filterStudents() {
+    let result = studentsArr.filter(function (item) {
+      return item.yearEntry == inputValue;
+    });
+    console.log(result);
+  }
+
+
+  
+
+  //получаем инпуты 2ой вариант
+  const getFilterElements = () => {
+    let groupInputFilters = document.getElementById("panelFilters");
+    return groupInputFilters.getElementsByTagName("input");
+  };
+
+  let currentFilters = [];
+
+  const applyFilterFio = (value) => {
+    studentsArr = studentsArr.filter(
+      (e) => e.firstName.includes(value) || e.middleName.includes(value) || e.lastName.includes(value)
+    );
+  };
+
+  const applyFilterFaculty = (value) => {
+    studentsArr = studentsArr.filter((e) => e.faculty.includes(value));
+  };
+
+  const applyFilterYearEntry = (value) => {
+    studentsArr = studentsArr.filter((e) => e.yearEntry === value);
+  };
+
+  const applyFilterBirthday = (value) => {
+    studentsArr = studentsArr.filter((e) => e.birthday === value);
+  };
+
+  let applyCurrentFilters = function () {
+    for (let el of currentFilters) {
+      if (el.name === "fio") {
+        applyFilterFio(el.value);
+      } else if (el.name === "faculty") {
+        applyFilterFaculty(el.value);
+      } else if (el.name === "yearEntry") {
+        applyFilterYearEntry(el.value);
+      } else if (el.name === "birthday") {
+        applyFilterBirthday(el.value);
+      }
+    }
+  };
+
+
+  const cleanFilters = () => {
+    let arrayInputFilters = getFilterElements();
+    currentFilters.length = 0;
+
+    for (let el of arrayInputFilters) {
+      if (el.type === "number") {
+        el.value = null;
+      } else {
+        el.value = "";
+      }
+    }
+  };
+
+  //очистка фильтров
+  let buttonClearFilters = document.querySelector("#clearBtn");
+
+  buttonClearFilters.addEventListener("click", (e) => {
+    e.preventDefault();
+    cleanFilters();
+  });
 });

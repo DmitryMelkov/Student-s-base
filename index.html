@@ -50,23 +50,23 @@
               <button class="panel__btn" type="submit" id="addBtn">Добавить студента</button>
             </div>
           </form>
-          <form class="panel__filters">
+          <form class="panel__filters" id="panelFilters">
             <h2 class="panel__title">Фильтры</h2>
             <label class="panel__item">
               <span class="panel__item-span">Полное имя:</span>
-              <input name="Full name" class="panel__item-input" type="text" />
+              <input name="Full name" class="panel__item-input" type="text" id="fioFilter"/>
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Факультет:</span>
-              <input name="Faculty" class="panel__item-input" type="text" />
+              <input name="Faculty" class="panel__item-input" type="text" id="facultyFilter"/>
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Дата поступления:</span>
-              <input name="Year of entry" class="panel__item-input" type="number" />
+              <input name="Year of entry" class="panel__item-input" type="number" id="yearEntryFilter" />
             </label>
             <label class="panel__item">
-              <span class="panel__item-span">Дата окончания:</span>
-              <input name="Year of graduating" class="panel__item-input" type="number" />
+              <span class="panel__item-span">Дата рождения:</span>
+              <input name="birthday" class="panel__item-input" type="number" id="birthdayFilter" />
             </label>
             <div class="panel__item">
               <button class="panel__btn" type="submit" id="applyBtn">Применить</button>
@@ -87,10 +87,10 @@
             <thead>
               <tr class="tr">
                 <th class="th">№</th>
-                <th class="th">Полное имя</th>
-                <th class="th">Факультет</th>
-                <th class="th">Дата рождения</th>
-                <th class="th">Дата поступления</th>
+                <th class="th" id="fioSort">ФИО</th>
+                <th class="th" id="facultySort">Факультет</th>
+                <th class="th" id="birthdaySort">Дата рождения</th>
+                <th class="th" id="yearEntrySort">Дата поступления</th>
                 <th class="th">Номер телефона</th>
               </tr>
             </thead>
