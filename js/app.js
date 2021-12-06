@@ -6,13 +6,19 @@ window.addEventListener("DOMContentLoaded", function () {
   let yearEntryFilterInput = document.querySelector("#yearEntryFilter");
 
   //массив студента
+  let options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }
+
   let studentsArr = [
     {
       firstName: "Dmitry",
       middleName: "Alexandrovich",
       lastName: "Melkov",
       fio: "Dmitry Alexandrovich Melkov",
-      birthday: new Date("1993-05-14"),
+      birthday: new Date(1993, 05 - 1, 14).toLocaleString("ru", options),
       yearEntry: "2011",
       faculty: "Chemical-technological",
       numberPhone: "+7-999-456-32-87",
@@ -22,7 +28,7 @@ window.addEventListener("DOMContentLoaded", function () {
       middleName: "Dmitrievich",
       lastName: "Gorbunov",
       fio: "Alexandr Dmitrievich Gorbunov",
-      birthday: new Date("1992-05-19"),
+      birthday: new Date(1992, 05 - 1, 19).toLocaleString("ru", options),
       yearEntry: "2010",
       faculty: "electrical-engineering",
       numberPhone: "+7-999-469-82-97",
@@ -32,7 +38,7 @@ window.addEventListener("DOMContentLoaded", function () {
       middleName: "Ivanovich",
       lastName: "Ivanov",
       fio: "Ivan Ivanovich Ivanov",
-      birthday: new Date("1997-09-10"),
+      birthday: new Date(1997, 09 - 1, 10).toLocaleString("ru", options),
       yearEntry: "2015",
       faculty: "electrical-engineering",
       numberPhone: "+7-999-456-32-87",
@@ -42,7 +48,7 @@ window.addEventListener("DOMContentLoaded", function () {
       middleName: "Petrovich",
       lastName: "Sokolov",
       fio: "Egor Petrovich Sokolov",
-      birthday: new Date("1995-08-11"),
+      birthday: new Date(1995, 08 - 1, 11).toLocaleString("ru", options),
       yearEntry: "2013",
       faculty: "Chemical-technological",
       numberPhone: "+7-992-256-32-78",
