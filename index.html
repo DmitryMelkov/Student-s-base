@@ -20,49 +20,68 @@
             <h2 class="panel__title">Добавить нового студента</h2>
             <label class="panel__item">
               <span class="panel__item-span">Имя: </span>
-              <input name="First name" class="panel__item-input" id="firstName" type="text" />
+              <input name="First name" class="panel__item-input validation__input" id="firstName" type="text" />
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Фамилия:</span>
-              <input name="Last name" class="panel__item-input" id="lastName" type="text" />
+              <input name="Last name" class="panel__item-input validation__input" id="lastName" type="text" />
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Отчество:</span>
-              <input name="Middle name" class="panel__item-input" id="middleName" type="text" />
+              <input name="Middle name" class="panel__item-input validation__input" id="middleName" type="text" />
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Дата Рождения:</span>
-              <input name="birthday name" class="panel__item-input" id="birthday" type="date" />
+              <input
+                name="birthday name"
+                class="panel__item-input validation__input validation__birthday"
+                id="birthday"
+                type="date"
+              />
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Дата поступления:</span>
-              <input name="Year of entry" class="panel__item-input" id="yearEntry" type="number" />
+              <input
+                name="Year of entry"
+                class="panel__item-input validation__input validation__yearEntry"
+                id="yearEntry"
+                type="number"
+              />
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Факультет:</span>
-              <input name="Faculty" class="panel__item-input" id="faculty" type="text" />
+              <input name="Faculty" class="panel__item-input validation__input" id="faculty" type="text" />
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Номер телефона:</span>
-              <input name="Faculty" class="panel__item-input" id="numberPhone" type="tel" />
+              <input
+                name="Faculty"
+                class="panel__item-input validation__input validation__numberPhone"
+                id="numberPhone"
+                type="tel"
+              />
             </label>
-            <div class="panel__item">
-              <button class="panel__btn" type="submit" id="addBtn">Добавить студента</button>
-            </div>
+
+            <button class="panel__btn" type="submit" id="addBtn">Добавить студента</button>
           </form>
           <form class="panel__filters" id="panelFilters">
             <h2 class="panel__title">Фильтры</h2>
             <label class="panel__item">
               <span class="panel__item-span">Полное имя:</span>
-              <input name="Full name" class="panel__item-input form__input-value" type="text" id="fioFilter"/>
+              <input name="Full name" class="panel__item-input form__input-value" type="text" id="fioFilter" />
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Факультет:</span>
-              <input name="Faculty" class="panel__item-input form__input-value" type="text" id="facultyFilter"/>
+              <input name="Faculty" class="panel__item-input form__input-value" type="text" id="facultyFilter" />
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Дата поступления:</span>
-              <input name="Year of entry" class="panel__item-input form__input-value" type="number" id="yearEntryFilter" />
+              <input
+                name="Year of entry"
+                class="panel__item-input form__input-value"
+                type="number"
+                id="yearEntryFilter"
+              />
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Дата рождения:</span>

@@ -158,3 +158,11 @@ label {
   padding: 10px;
 
 }
+
+.validation__input.valid {
+  border: 1px solid green;
+}
+
+.validation__input.invalid {
+  border: 1px solid red;
+}

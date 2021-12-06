@@ -131,11 +131,56 @@ window.addEventListener("DOMContentLoaded", function () {
     let facultyValue = faculty.value;
     let numberPhoneValue = numberPhone.value;
 
-    studentsArr.push({ firstName: firstNameValue, lastName: lastNameValue, middleName: middleNameValue, fio: firstNameValue + ' ' + middleNameValue + ' ' + lastNameValue, birthday: birthdayValue, yearEntry: yearEntryValue, faculty: facultyValue, numberPhone: numberPhoneValue});
+    studentsArr.push({
+      firstName: firstNameValue,
+      lastName: lastNameValue,
+      middleName: middleNameValue,
+      fio: firstNameValue + " " + middleNameValue + " " + lastNameValue,
+      birthday: birthdayValue,
+      yearEntry: yearEntryValue,
+      faculty: facultyValue,
+      numberPhone: numberPhoneValue,
+    });
 
+    //валидация
+    let formValidationInputs = document.querySelectorAll(".validation__input");
+    let emptyInputs = Array.from(formValidationInputs).filter((input) => input.value === "");
+    let formValidationPhone = document.querySelector(".validation__numberPhone");
 
-    render();
+    //пустое поле
+    formValidationInputs.forEach(function (input) {
+      if (input.value === "") {
+        input.classList.add("invalid");
+      } else {
+        input.classList.remove("invalid");
+      }
+    });
+
+    //телефон
+    function validatePhone(phone) {
+      let re = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
+      return re.test(String(phone));
+    }
+
+    if (emptyInputs.length !== 0) {
+      console.log("inputs not filled");
+      return false;
+    }
+
+    if (!validatePhone(formValidationPhone)) {
+      console.log("Phone not valid");
+      formValidationPhone.classList.add("invalid");
+      return false;
+    } else {
+      formValidationPhone.classList.remove("invalid");
+    }
   });
+
+  // let formValidation = document.querySelector("#formAdd");
+  // let formValidationBirthday = document.querySelector(".validation__birthday");
+  // let formValidationYearEntry = document.querySelector(".validation__yearEntry");
+
+  // console.log(formValidation);
 
   //сортировка
   document.querySelector("#fioSort").addEventListener("click", function () {
