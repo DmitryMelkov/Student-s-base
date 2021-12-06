@@ -20,6 +20,7 @@ window.addEventListener("DOMContentLoaded", function () {
       fio: "Dmitry Alexandrovich Melkov",
       birthday: new Date(1993, 05 - 1, 14).toLocaleString("ru", options),
       yearEntry: "2011",
+      yearGraduated: "2015",
       faculty: "Chemical-technological",
       numberPhone: "+7-999-456-32-87",
     },
@@ -30,6 +31,7 @@ window.addEventListener("DOMContentLoaded", function () {
       fio: "Alexandr Dmitrievich Gorbunov",
       birthday: new Date(1992, 05 - 1, 19).toLocaleString("ru", options),
       yearEntry: "2010",
+      yearGraduated: "2014",
       faculty: "electrical-engineering",
       numberPhone: "+7-999-469-82-97",
     },
@@ -40,6 +42,7 @@ window.addEventListener("DOMContentLoaded", function () {
       fio: "Ivan Ivanovich Ivanov",
       birthday: new Date(1997, 09 - 1, 10).toLocaleString("ru", options),
       yearEntry: "2015",
+      yearGraduated: "2019",
       faculty: "electrical-engineering",
       numberPhone: "+7-999-456-32-87",
     },
@@ -50,10 +53,15 @@ window.addEventListener("DOMContentLoaded", function () {
       fio: "Egor Petrovich Sokolov",
       birthday: new Date(1995, 08 - 1, 11).toLocaleString("ru", options),
       yearEntry: "2013",
+      yearGraduated: "2017",
       faculty: "Chemical-technological",
       numberPhone: "+7-992-256-32-78",
     },
   ];
+
+
+
+  console.log(studentsArr)
 
   //создание tr
   function createStudTr(student) {
@@ -83,6 +91,11 @@ window.addEventListener("DOMContentLoaded", function () {
     elRowTD = document.createElement("td");
     elRowTD.classList.add("td");
     elRowTD.textContent = student.yearEntry;
+    elRowTR.append(elRowTD);
+
+    elRowTD = document.createElement("td");
+    elRowTD.classList.add("td");
+    elRowTD.textContent = student.yearGraduated;
     elRowTR.append(elRowTD);
 
     elRowTD = document.createElement("td");
@@ -144,6 +157,7 @@ window.addEventListener("DOMContentLoaded", function () {
       fio: firstNameValue + " " + middleNameValue + " " + lastNameValue,
       birthday: birthdayValue,
       yearEntry: yearEntryValue,
+      yearGraduated: Number(yearEntryValue) + 4,
       faculty: facultyValue,
       numberPhone: numberPhoneValue,
     });
@@ -179,7 +193,10 @@ window.addEventListener("DOMContentLoaded", function () {
       return false;
     } else {
       formValidationPhone.classList.remove("invalid");
+
     }
+
+    render();
   });
 
   // let formValidation = document.querySelector("#formAdd");
@@ -188,7 +205,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // console.log(formValidation);
 
-  //сортировка
+  // сортировка
   document.querySelector("#fioSort").addEventListener("click", function () {
     columnSort = "fio";
     dirSort = !dirSort;
