@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
     <title>homework_10</title>
-    <script defer src="js/app.js"></script>
   </head>
   <body>
     <!-- header -->
@@ -16,19 +15,43 @@
         <h1 class="admin-panel__header">Панель управления студентами</h1>
 
         <div class="panel__header">
-          <form class="panel__new-student" id="formAdd">
+          <form
+            class="panel__new-student"
+            id="formAdd"
+            action="https://jsonplaceholder.typicode.com/posts"
+            autocomplete="on"
+            method="POST"
+          >
             <h2 class="panel__title">Добавить нового студента</h2>
             <label class="panel__item">
               <span class="panel__item-span">Имя: </span>
-              <input name="First name" class="panel__item-input validation__input" id="firstName" type="text" />
+              <input
+                name="First name"
+                class="panel__item-input validation__input"
+                id="firstName"
+                type="text"
+                data-validate-field="firstName"
+              />
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Фамилия:</span>
-              <input name="Last name" class="panel__item-input validation__input" id="lastName" type="text" />
+              <input
+                name="Last name"
+                class="panel__item-input validation__input"
+                id="lastName"
+                type="text"
+                data-validate-field="lastName"
+              />
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Отчество:</span>
-              <input name="Middle name" class="panel__item-input validation__input" id="middleName" type="text" />
+              <input
+                name="Middle name"
+                class="panel__item-input validation__input"
+                id="middleName"
+                type="text"
+                data-validate-field="middleName"
+              />
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Дата Рождения:</span>
@@ -59,10 +82,11 @@
                 class="panel__item-input validation__input validation__numberPhone"
                 id="numberPhone"
                 type="tel"
+                data-validate-field="numberPhone"
               />
             </label>
 
-            <button class="panel__btn" type="submit" id="addBtn">Добавить студента</button>
+            <button class="panel__btn" id="addBtn">Добавить студента</button>
           </form>
           <form class="panel__filters" id="panelFilters">
             <h2 class="panel__title">Фильтры</h2>
@@ -128,5 +152,9 @@
         </div>
       </div>
     </section>
+
+    <script src="js/just-validate.min.js"></script>
+    <script src="js/inputmask.min.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>

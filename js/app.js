@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded", function () {
     year: "numeric",
     month: "long",
     day: "numeric",
-  }
+  };
 
   let studentsArr = [
     {
@@ -58,10 +58,6 @@ window.addEventListener("DOMContentLoaded", function () {
       numberPhone: "+7-992-256-32-78",
     },
   ];
-
-
-
-  console.log(studentsArr)
 
   //создание tr
   function createStudTr(student) {
@@ -163,38 +159,52 @@ window.addEventListener("DOMContentLoaded", function () {
     });
 
     //валидация
-    let formValidationInputs = document.querySelectorAll(".validation__input");
-    let emptyInputs = Array.from(formValidationInputs).filter((input) => input.value === "");
-    let formValidationPhone = document.querySelector(".validation__numberPhone");
+    let selector = document.querySelector("input[type='tel']");
 
-    //пустое поле
-    formValidationInputs.forEach(function (input) {
-      if (input.value === "") {
-        input.classList.add("invalid");
-      } else {
-        input.classList.remove("invalid");
-      }
+    let im = new Inputmask("+7 (999)-999-99-99");
+    im.mask(selector);
+
+    new JustValidate(".panel__new-student", {
+      rules: {
+        numberPhone: {
+          required: true,
+          function: (name, value) => {
+            const phone = selector.inputmask.unmaskedvalue();
+            return Number(phone) && phone.length === 10;
+          },
+        },
+        firstName: {
+          required: true,
+          minLength: 3,
+          maxLength: 30,
+        },
+        lastName: {
+          required: true,
+          minLength: 3,
+          maxLength: 30,
+        },
+        middleName: {
+          required: true,
+          minLength: 3,
+          maxLength: 30,
+        },
+      },
+      messages: {
+        numberPhone: {
+          required: "Укажите номер телефона",
+        },
+        firstName: {
+          required: "Укажите имя",
+        },
+        lastName: {
+          required: "Укажите фамилию",
+        },
+        middleName: {
+          required: "Укажите отчество",
+        },
+      },
+      colorWrong: "red",
     });
-
-    //телефон
-    function validatePhone(phone) {
-      let re = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
-      return re.test(String(phone));
-    }
-
-    if (emptyInputs.length !== 0) {
-      console.log("inputs not filled");
-      return false;
-    }
-
-    if (!validatePhone(formValidationPhone)) {
-      console.log("Phone not valid");
-      formValidationPhone.classList.add("invalid");
-      return false;
-    } else {
-      formValidationPhone.classList.remove("invalid");
-
-    }
 
     render();
   });
@@ -276,3 +286,37 @@ window.addEventListener("DOMContentLoaded", function () {
     inputValue = allInputFilter.value;
   });
 });
+
+// //валидация
+// let formValidationInputs = document.querySelectorAll(".validation__input");
+// let emptyInputs = Array.from(formValidationInputs).filter((input) => input.value === "");
+// let formValidationPhone = document.querySelector(".validation__numberPhone");
+
+// //пустое поле
+// formValidationInputs.forEach(function (input) {
+//   if (input.value === "") {
+//     input.classList.add("invalid");
+//   } else {
+//     input.classList.remove("invalid");
+//   }
+// });
+
+// //телефон
+// function validatePhone(phone) {
+//   let re = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
+//   return re.test(String(phone));
+// }
+
+// if (emptyInputs.length !== 0) {
+//   console.log("inputs not filled");
+//   return false;
+// }
+
+// if (!validatePhone(formValidationPhone)) {
+//   console.log("Phone not valid");
+//   formValidationPhone.classList.add("invalid");
+//   return false;
+// } else {
+//   formValidationPhone.classList.remove("invalid");
+
+// }
