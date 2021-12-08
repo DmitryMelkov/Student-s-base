@@ -59,6 +59,63 @@ window.addEventListener("DOMContentLoaded", function () {
     },
   ];
 
+
+  //валидация
+  let selector = document.querySelector("input[type='tel']");
+
+  let im = new Inputmask("+7 (999)-999-99-99");
+  im.mask(selector);
+
+  new JustValidate(".panel__new-student", {
+    rules: {
+      numberPhone: {
+        required: true,
+        function: (name, value) => {
+          const phone = selector.inputmask.unmaskedvalue();
+          return Number(phone) && phone.length === 10;
+        },
+      },
+      firstName: {
+        required: true,
+        minLength: 3,
+        maxLength: 30,
+      },
+      lastName: {
+        required: true,
+        minLength: 3,
+        maxLength: 30,
+      },
+      middleName: {
+        required: true,
+        minLength: 3,
+        maxLength: 30,
+      },
+    },
+    messages: {
+      numberPhone: {
+        required: "Укажите номер телефона",
+      },
+      firstName: {
+        required: "Укажите имя",
+      },
+      lastName: {
+        required: "Укажите фамилию",
+      },
+      middleName: {
+        required: "Укажите отчество",
+      },
+    },
+    colorWrong: "red",
+  });
+
+  //отправка формы
+  let formValidation = document.querySelector("#formAdd");
+  formValidation.addEventListener('submit', function() {
+
+
+    console.log('Событие отправки формы')
+  })
+
   //создание tr
   function createStudTr(student) {
     //создаем tr
@@ -134,9 +191,10 @@ window.addEventListener("DOMContentLoaded", function () {
   let faculty = document.querySelector("#faculty");
   let numberPhone = document.querySelector("#numberPhone");
 
+
+
   addStudent = document.querySelector("#addBtn");
-  addStudent.addEventListener("click", function (e) {
-    e.preventDefault();
+  addStudent.addEventListener("click", function () {
 
     let firstNameValue = firstName.value;
     let lastNameValue = lastName.value;
@@ -158,62 +216,9 @@ window.addEventListener("DOMContentLoaded", function () {
       numberPhone: numberPhoneValue,
     });
 
-    //валидация
-    let selector = document.querySelector("input[type='tel']");
-
-    let im = new Inputmask("+7 (999)-999-99-99");
-    im.mask(selector);
-
-    new JustValidate(".panel__new-student", {
-      rules: {
-        numberPhone: {
-          required: true,
-          function: (name, value) => {
-            const phone = selector.inputmask.unmaskedvalue();
-            return Number(phone) && phone.length === 10;
-          },
-        },
-        firstName: {
-          required: true,
-          minLength: 3,
-          maxLength: 30,
-        },
-        lastName: {
-          required: true,
-          minLength: 3,
-          maxLength: 30,
-        },
-        middleName: {
-          required: true,
-          minLength: 3,
-          maxLength: 30,
-        },
-      },
-      messages: {
-        numberPhone: {
-          required: "Укажите номер телефона",
-        },
-        firstName: {
-          required: "Укажите имя",
-        },
-        lastName: {
-          required: "Укажите фамилию",
-        },
-        middleName: {
-          required: "Укажите отчество",
-        },
-      },
-      colorWrong: "red",
-    });
-
     render();
   });
 
-  // let formValidation = document.querySelector("#formAdd");
-  // let formValidationBirthday = document.querySelector(".validation__birthday");
-  // let formValidationYearEntry = document.querySelector(".validation__yearEntry");
-
-  // console.log(formValidation);
 
   // сортировка
   document.querySelector("#fioSort").addEventListener("click", function () {

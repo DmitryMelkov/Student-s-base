@@ -166,3 +166,7 @@ label {
 .validation__input.invalid {
   border: 1px solid red;
 }
+
+.js-validate-error-label {
+  margin-left: 20px;
+}

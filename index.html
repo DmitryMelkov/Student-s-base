@@ -18,15 +18,13 @@
           <form
             class="panel__new-student"
             id="formAdd"
-            action="https://jsonplaceholder.typicode.com/posts"
-            autocomplete="on"
-            method="POST"
+            
           >
             <h2 class="panel__title">Добавить нового студента</h2>
             <label class="panel__item">
               <span class="panel__item-span">Имя: </span>
               <input
-                name="First name"
+                name="firstName"
                 class="panel__item-input validation__input"
                 id="firstName"
                 type="text"
@@ -36,7 +34,7 @@
             <label class="panel__item">
               <span class="panel__item-span">Фамилия:</span>
               <input
-                name="Last name"
+                name="lastName"
                 class="panel__item-input validation__input"
                 id="lastName"
                 type="text"
@@ -46,7 +44,7 @@
             <label class="panel__item">
               <span class="panel__item-span">Отчество:</span>
               <input
-                name="Middle name"
+                name="middleName"
                 class="panel__item-input validation__input"
                 id="middleName"
                 type="text"
@@ -56,7 +54,7 @@
             <label class="panel__item">
               <span class="panel__item-span">Дата Рождения:</span>
               <input
-                name="birthday name"
+                name="birthday"
                 class="panel__item-input validation__input validation__birthday"
                 id="birthday"
                 type="date"
@@ -65,7 +63,7 @@
             <label class="panel__item">
               <span class="panel__item-span">Дата поступления:</span>
               <input
-                name="Year of entry"
+                name="yearEntry"
                 class="panel__item-input validation__input validation__yearEntry"
                 id="yearEntry"
                 type="number"
@@ -73,12 +71,12 @@
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Факультет:</span>
-              <input name="Faculty" class="panel__item-input validation__input" id="faculty" type="text" />
+              <input name="faculty" class="panel__item-input validation__input" id="faculty" type="text" />
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Номер телефона:</span>
               <input
-                name="Faculty"
+                name="numberPhone"
                 class="panel__item-input validation__input validation__numberPhone"
                 id="numberPhone"
                 type="tel"
@@ -86,7 +84,7 @@
               />
             </label>
 
-            <button class="panel__btn" id="addBtn">Добавить студента</button>
+            <button class="panel__btn" type="submit" id="addBtn">Добавить студента</button>
           </form>
           <form class="panel__filters" id="panelFilters">
             <h2 class="panel__title">Фильтры</h2>
