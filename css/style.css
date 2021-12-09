@@ -61,7 +61,8 @@ label {
 
 .panel__new-student,
 .panel__filters {
-  max-width: 500px;
+  min-width: 500px;
+
   padding: 10px 20px 10px 40px;
   margin: 30px 20px;
   border: 1px solid #333;
@@ -71,6 +72,7 @@ label {
 
 .panel__item {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 

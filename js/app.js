@@ -5,6 +5,15 @@ window.addEventListener("DOMContentLoaded", function () {
   let facultyFilterInput = document.querySelector("#facultyFilter");
   let yearEntryFilterInput = document.querySelector("#yearEntryFilter");
 
+  //добавление студента
+  let firstName = document.querySelector("#firstName");
+  let lastName = document.querySelector("#lastName");
+  let middleName = document.querySelector("#middleName");
+  let birthday = document.querySelector("#birthday");
+  let yearEntry = document.querySelector("#yearEntry");
+  let faculty = document.querySelector("#faculty");
+  let numberPhone = document.querySelector("#numberPhone");
+
   //массив студента
   let options = {
     year: "numeric",
@@ -59,12 +68,15 @@ window.addEventListener("DOMContentLoaded", function () {
     },
   ];
 
-
   //валидация
   let selector = document.querySelector("input[type='tel']");
 
   let im = new Inputmask("+7 (999)-999-99-99");
   im.mask(selector);
+
+  let dateMin = new Date("1900-01-01");
+  let dateMax = new Date();
+  let dateBirth = birthday.valueAsDate;
 
   new JustValidate(".panel__new-student", {
     rules: {
@@ -90,6 +102,22 @@ window.addEventListener("DOMContentLoaded", function () {
         minLength: 3,
         maxLength: 30,
       },
+      faculty: {
+        required: true,
+        minLength: 3,
+        maxLength: 30,
+      },
+      birthday: {
+        required: true,
+        function: function () {
+          if (dateBirth < dateMin || dateBirth > dateMax) {
+            console.log("sefvsdv");
+          }
+        },
+      },
+      yearEntry: {
+        required: true,
+      },
     },
     messages: {
       numberPhone: {
@@ -104,17 +132,42 @@ window.addEventListener("DOMContentLoaded", function () {
       middleName: {
         required: "Укажите отчество",
       },
+      faculty: {
+        required: "Укажите факультет",
+      },
+      birthday: {
+        required: "Вам должно быть не меньше 18",
+      },
+      yearEntry: {
+        required: "Укажите год поступления",
+      },
     },
+
     colorWrong: "red",
+
+    submitHandler: function () {
+      let firstNameValue = firstName.value;
+      let lastNameValue = lastName.value;
+      let middleNameValue = middleName.value;
+      let birthdayValue = birthday.value;
+      let yearEntryValue = yearEntry.value;
+      let facultyValue = faculty.value;
+      let numberPhoneValue = numberPhone.value;
+
+      studentsArr.push({
+        firstName: firstNameValue,
+        lastName: lastNameValue,
+        middleName: middleNameValue,
+        fio: firstNameValue + " " + middleNameValue + " " + lastNameValue,
+        birthday: birthdayValue,
+        yearEntry: yearEntryValue,
+        yearGraduated: Number(yearEntryValue) + 4,
+        faculty: facultyValue,
+        numberPhone: numberPhoneValue,
+      });
+      render();
+    },
   });
-
-  //отправка формы
-  let formValidation = document.querySelector("#formAdd");
-  formValidation.addEventListener('submit', function() {
-
-
-    console.log('Событие отправки формы')
-  })
 
   //создание tr
   function createStudTr(student) {
@@ -181,44 +234,6 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   render();
-
-  //добавление студента
-  let firstName = document.querySelector("#firstName");
-  let lastName = document.querySelector("#lastName");
-  let middleName = document.querySelector("#middleName");
-  let birthday = document.querySelector("#birthday");
-  let yearEntry = document.querySelector("#yearEntry");
-  let faculty = document.querySelector("#faculty");
-  let numberPhone = document.querySelector("#numberPhone");
-
-
-
-  addStudent = document.querySelector("#addBtn");
-  addStudent.addEventListener("click", function () {
-
-    let firstNameValue = firstName.value;
-    let lastNameValue = lastName.value;
-    let middleNameValue = middleName.value;
-    let birthdayValue = birthday.value;
-    let yearEntryValue = yearEntry.value;
-    let facultyValue = faculty.value;
-    let numberPhoneValue = numberPhone.value;
-
-    studentsArr.push({
-      firstName: firstNameValue,
-      lastName: lastNameValue,
-      middleName: middleNameValue,
-      fio: firstNameValue + " " + middleNameValue + " " + lastNameValue,
-      birthday: birthdayValue,
-      yearEntry: yearEntryValue,
-      yearGraduated: Number(yearEntryValue) + 4,
-      faculty: facultyValue,
-      numberPhone: numberPhoneValue,
-    });
-
-    render();
-  });
-
 
   // сортировка
   document.querySelector("#fioSort").addEventListener("click", function () {

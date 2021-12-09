@@ -15,11 +15,7 @@
         <h1 class="admin-panel__header">Панель управления студентами</h1>
 
         <div class="panel__header">
-          <form
-            class="panel__new-student"
-            id="formAdd"
-            
-          >
+          <form class="panel__new-student" id="formAdd">
             <h2 class="panel__title">Добавить нового студента</h2>
             <label class="panel__item">
               <span class="panel__item-span">Имя: </span>
@@ -58,6 +54,7 @@
                 class="panel__item-input validation__input validation__birthday"
                 id="birthday"
                 type="date"
+                data-validate-field="birthday"
               />
             </label>
             <label class="panel__item">
@@ -67,11 +64,18 @@
                 class="panel__item-input validation__input validation__yearEntry"
                 id="yearEntry"
                 type="number"
+                data-validate-field="yearEntry"
               />
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Факультет:</span>
-              <input name="faculty" class="panel__item-input validation__input" id="faculty" type="text" />
+              <input
+                name="faculty"
+                class="panel__item-input validation__input"
+                id="faculty"
+                type="text"
+                data-validate-field="faculty"
+              />
             </label>
             <label class="panel__item">
               <span class="panel__item-span">Номер телефона:</span>
