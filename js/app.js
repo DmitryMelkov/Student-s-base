@@ -38,7 +38,7 @@ window.addEventListener("DOMContentLoaded", function () {
       middleName: "Dmitrievich",
       lastName: "Gorbunov",
       fio: "Alexandr Dmitrievich Gorbunov",
-      birthday: new Date(1992, 05 - 1, 19).toLocaleString("ru", options),
+      birthday: new Date(2000, 05 - 1, 19).toLocaleString("ru", options),
       yearEntry: "2010",
       yearGraduated: "2014",
       faculty: "electrical-engineering",
@@ -74,9 +74,6 @@ window.addEventListener("DOMContentLoaded", function () {
   let im = new Inputmask("+7 (999)-999-99-99");
   im.mask(selector);
 
-  let dateMin = new Date("1900-01-01");
-  let dateMax = new Date();
-  let dateBirth = birthday.valueAsDate;
 
   new JustValidate(".panel__new-student", {
     rules: {
@@ -110,9 +107,19 @@ window.addEventListener("DOMContentLoaded", function () {
       birthday: {
         required: true,
         function: function () {
-          if (dateBirth < dateMin || dateBirth > dateMax) {
-            console.log("sefvsdv");
+          let now = new Date(); //Текущя дата
+          let today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); //Текущя дата без времени
+          let dob = new Date(birthday.valueAsDate); //Дата рождения
+          let dobnow = new Date(today.getFullYear(), dob.getMonth(), dob.getDate()); //ДР в текущем году
+          let age; //Возраст
+
+          //Возраст = текущий год - год рождения
+          age = today.getFullYear() - dob.getFullYear();
+          //Если ДР в этом году ещё предстоит, то вычитаем из age один год
+          if (today < dobnow) {
+            age = age - 1;
           }
+          if (age >= 18) return true
         },
       },
       yearEntry: {
@@ -136,7 +143,7 @@ window.addEventListener("DOMContentLoaded", function () {
         required: "Укажите факультет",
       },
       birthday: {
-        required: "Вам должно быть не меньше 18",
+        function: "Вам должно быть не меньше 18",
       },
       yearEntry: {
         required: "Укажите год поступления",
@@ -145,16 +152,21 @@ window.addEventListener("DOMContentLoaded", function () {
 
     colorWrong: "red",
 
+
     submitHandler: function () {
+      // let numberValue = number.value
       let firstNameValue = firstName.value;
       let lastNameValue = lastName.value;
       let middleNameValue = middleName.value;
-      let birthdayValue = birthday.value;
+      let birthdayValue = new Date(birthday.value).toLocaleString("ru", options) ;
       let yearEntryValue = yearEntry.value;
       let facultyValue = faculty.value;
       let numberPhoneValue = numberPhone.value;
 
+
+
       studentsArr.push({
+        // number: numberValue,
         firstName: firstNameValue,
         lastName: lastNameValue,
         middleName: middleNameValue,
@@ -169,6 +181,8 @@ window.addEventListener("DOMContentLoaded", function () {
     },
   });
 
+  console.log(birthday.value)
+
   //создание tr
   function createStudTr(student) {
     //создаем tr
@@ -177,7 +191,9 @@ window.addEventListener("DOMContentLoaded", function () {
     let elRowH = document.createElement("th");
     elRowH.setAttribute("scope", "row");
     elRowH.classList.add("id");
+    elRowH.textContent = studentsArr.indexOf(student) + 1;
     elRowTR.append(elRowH);
+
 
     let elRowTD = document.createElement("td");
     elRowTD.classList.add("td");
@@ -236,6 +252,12 @@ window.addEventListener("DOMContentLoaded", function () {
   render();
 
   // сортировка
+  document.querySelector("#number").addEventListener("click", function () {
+    columnSort = "number";
+    dirSort = !dirSort;
+    render();
+  });
+
   document.querySelector("#fioSort").addEventListener("click", function () {
     columnSort = "fio";
     dirSort = !dirSort;
@@ -307,36 +329,3 @@ window.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// //валидация
-// let formValidationInputs = document.querySelectorAll(".validation__input");
-// let emptyInputs = Array.from(formValidationInputs).filter((input) => input.value === "");
-// let formValidationPhone = document.querySelector(".validation__numberPhone");
-
-// //пустое поле
-// formValidationInputs.forEach(function (input) {
-//   if (input.value === "") {
-//     input.classList.add("invalid");
-//   } else {
-//     input.classList.remove("invalid");
-//   }
-// });
-
-// //телефон
-// function validatePhone(phone) {
-//   let re = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
-//   return re.test(String(phone));
-// }
-
-// if (emptyInputs.length !== 0) {
-//   console.log("inputs not filled");
-//   return false;
-// }
-
-// if (!validatePhone(formValidationPhone)) {
-//   console.log("Phone not valid");
-//   formValidationPhone.classList.add("invalid");
-//   return false;
-// } else {
-//   formValidationPhone.classList.remove("invalid");
-
-// }
